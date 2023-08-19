@@ -1,0 +1,25 @@
+# Anahtar dosyanızın adı: docker-compose.yml
+
+version: '3.1'
+services:
+  app:
+    build: . # Mevcut dizindeki Dockerfile'ı kullanarak uygulamanızı oluşturun
+    ports:
+      - "8000:8000" # Uygulamanızın dinlediği portu 8000 olarak belirleyin
+    depends_on:
+      - db # Uygulamanızın veritabanı servisine bağlı olduğunu belirtin
+    environment:
+      - DATABASE_URL=mysql://admin:admin@db/Win11 # Veritabanı bağlantı dizesi (gerektiği şekilde değiştirin)
+
+  db:
+    image: "mysql:5.7" # MySQL 5.7 görüntüsünü kullanın
+    environment:
+      MYSQL_ROOT_PASSWORD: Medart2022 # Root şifresini belirleyin
+      MYSQL_DATABASE: Win11 # Veritabanı adını belirleyin
+      MYSQL_USER: admin # Kullanıcı adını belirleyin
+      MYSQL_PASSWORD: admin # Kullanıcı şifresini belirleyin
+    volumes:
+      - db_data:/var/lib/mysql # Verilerin kalıcı olmasını sağlayın
+
+volumes:
+  db_data: # Kalıcı birim tanımı

@@ -1,4 +1,4 @@
-# 1BinanceWebSockets.py
+# BinanceWebSockets.py
 import asyncio
 import aiohttp
 from cryptocmd import Binance, Coinbase
